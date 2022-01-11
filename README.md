@@ -1,3 +1,6 @@
+###Github Token
+- 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
+
 ## Documentation
 
 
@@ -45,9 +48,13 @@
 
 <h4>Section 2: Rules & Authintications</h4>
 <ul>
-    <li>7- Install Rules Package: 
+    <li>6- Install Rules Package: 
         <ul>
-            <li></li>
+            <li>Edit Auth::routes(); To Auth::routes(['verify' => true]);</li>
+            <li>Add MustVerifyEmail Interface to User Model</li>
+            <li>Edit User Migration as needed</li>
+            <li>Install <a href="https://github.com/mindscms/entrust">Rule Package</a></li>
+            <li>Create Entrust Seeder: Users and Roles and attach the User into the role</li>
         </ul>
     </li>
 </ul>

@@ -21,6 +21,6 @@ Route::get('/admin/index', [BackendController::class, 'index'])->name('backend.i
 //    return view('backend.login');
 //});
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
