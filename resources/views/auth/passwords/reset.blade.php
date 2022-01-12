@@ -1,13 +1,32 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
+    {{--Header--}}
+    <section class="py-5 bg-light">
 
-                <div class="card-body">
+        <div class="container">
+            <div class="row px-4 px-lg-5 py-lg-4 align-items-center">
+                <div class="col-lg-6">
+                    <h1 class="h2 text-uppercase mb-0">{{ __('Reset Password') }}</h1>
+                </div>
+
+                <div class="col-lg-6 text-lg-end">
+
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    {{--Login Form--}}
+    <section class="py-5">
+        <div class="row">
+            <div class="col-6 offset-3">
+                <h2 class="h5 text-uppercase mb-4 text-center">
+                    {{ __('Reset Password') }}
+                </h2>
+
+
                     <form method="POST" action="{{ route('password.update') }}">
                         @csrf
 
@@ -59,7 +78,5 @@
                     </form>
                 </div>
             </div>
-        </div>
-    </div>
-</div>
+    </section>
 @endsection

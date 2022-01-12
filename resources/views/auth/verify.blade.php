@@ -1,13 +1,33 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Verify Your Email Address') }}</div>
 
-                <div class="card-body">
+
+    {{--Header--}}
+    <section class="py-5 bg-light">
+
+        <div class="container">
+            <div class="row px-4 px-lg-5 py-lg-4 align-items-center">
+                <div class="col-lg-6">
+                    <h1 class="h2 text-uppercase mb-0">Verify Your Email</h1>
+                </div>
+
+                <div class="col-lg-6 text-lg-end">
+
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    {{--Verify Your Email Form--}}
+    <section class="py-5">
+        <div class="row">
+            <div class="col-6 offset-3">
+                <h2 class="h5 text-uppercase mb-4">
+                    {{__('Verify Your Email')}}
+                </h2>
+
                     @if (session('resent'))
                         <div class="alert alert-success" role="alert">
                             {{ __('A fresh verification link has been sent to your email address.') }}
@@ -20,9 +40,7 @@
                         @csrf
                         <button type="submit" class="btn btn-link p-0 m-0 align-baseline">{{ __('click here to request another') }}</button>.
                     </form>
-                </div>
             </div>
         </div>
-    </div>
-</div>
+    </section>
 @endsection

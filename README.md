@@ -57,4 +57,11 @@
             <li>Create Entrust Seeder: Users and Roles and attach the User into the role</li>
         </ul>
     </li>
+    <li>7- Set The Authinticate settings 1: 
+        <ul>
+            <li>Cutomize the resources/views/auth files as needed</li>
+            <li>Edit create and validator method in app/Http/Controllers/Auth/RegisterController to match the user migration</li>
+            <li>In the same create method don't forget to attachRole on the created user statement</li>
+        </ul>
+    </li>
 </ul>
