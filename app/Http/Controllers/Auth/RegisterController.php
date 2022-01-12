@@ -48,7 +48,7 @@ class RegisterController extends Controller
      * @param array $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    protected function validator(array $data): \Illuminate\Contracts\Validation\Validator
+    protected function validator(array $data)
     {
         return Validator::make($data, [
             'first_name' => ['required', 'string', 'max:255'],
@@ -79,5 +79,7 @@ class RegisterController extends Controller
         ]);
 
         $user->attachRole(Role::whereName('customer')->first()->id);
+
+        return $user;
     }
 }

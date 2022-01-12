@@ -1,5 +1,5 @@
 ###Github Token
-- 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
+- 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
 
 ## Documentation
 
@@ -62,6 +62,17 @@
             <li>Cutomize the resources/views/auth files as needed</li>
             <li>Edit create and validator method in app/Http/Controllers/Auth/RegisterController to match the user migration</li>
             <li>In the same create method don't forget to attachRole on the created user statement</li>
+        </ul>
+    </li>
+    <li>8- Set The Authintication Settings 2:
+        <ul>
+            <li>Make Login Proccess use username instead of email by:
+                <ul>
+                    <li>Add username method in LoginController and return 'username'</li>
+                    <li>Add redirectTo method and redirect the user into his allowed route</li>
+                    <li>Edit app header so login and register words toggled to Welcome msg when logged in</li>
+                </ul>
+            </li>        
         </ul>
     </li>
 </ul>
