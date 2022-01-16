@@ -75,4 +75,13 @@
             </li>        
         </ul>
     </li>
+    <li>9- Set The Authintication Settings 3:
+        <ul>
+            <li>Customize views/backend/login and forgot-password views as needed.</li>
+            <li>Add Logout proccess</li>
+            <li>Create New Roles Middleware</li>
+            <li>Scafold the admin/index route with role and roles middleware</li>
+            <li>Turn backend.index into admin.index</li>
+        </ul>
+    </li>
 </ul>

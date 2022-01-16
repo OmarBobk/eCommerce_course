@@ -19,19 +19,28 @@
                                     <p class="mb-4">We get it, stuff happens. Just enter your email address below,
                                         and we'll send you a link to reset your password!</p>
                                 </div>
-                                <form class="user">
+                                <form class="user" method="POST" action="{{route('password.email')}}">
+                                    @csrf
+
+                                    {{--Email--}}
                                     <div class="form-group">
                                         <input type="email" class="form-control form-control-user"
-                                               id="exampleInputEmail" aria-describedby="emailHelp"
+                                               name="email" value="{{old('email')}}"
                                                placeholder="Enter Email Address...">
+                                        @error('email') <span class="text-danger">{{$message}}</span>@enderror
                                     </div>
-                                    <a href="{{route('backend.login')}}" class="btn btn-primary btn-user btn-block">
+
+                                    {{--Submit--}}
+                                    <button type="submit"
+                                            class="btn btn-primary btn-user btn-block"
+                                            name="submit"
+                                    >
                                         Reset Password
-                                    </a>
+                                    </button>
                                 </form>
                                 <hr>
                                 <div class="text-center">
-                                    <a class="small" href="{{route('backend.login')}}">Already have an account? Login!</a>
+                                    <a class="small" href="{{route('admin.login')}}">Already have an account? Login!</a>
                                 </div>
                             </div>
                         </div>
