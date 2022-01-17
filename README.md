@@ -1,5 +1,5 @@
 ###Github Token
-- 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
+- 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
 
 ## Documentation
 
@@ -82,6 +82,13 @@
             <li>Create New Roles Middleware</li>
             <li>Scafold the admin/index route with role and roles middleware</li>
             <li>Turn backend.index into admin.index</li>
+        </ul>
+    </li>
+    <li>10- Permissions 1:
+        <ul>
+            <li>Create Products Categories Model And Controller</li>
+            <li>Create new Resources Route for Products Categories</li>
+            <li>Create Permissions seeder For Products Categories: Create, Index, Delete, Update, Show</li>
         </ul>
     </li>
 </ul>

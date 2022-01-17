@@ -50,6 +50,9 @@ Route::group([
             'index'
         ])
             ->name('index');
+
+        Route::resource('product_categories', ProductCategoriesController::class);
+
     });
 });
 
