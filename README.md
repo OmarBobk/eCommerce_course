@@ -91,4 +91,10 @@
             <li>Create Permissions seeder For Products Categories: Create, Index, Delete, Update, Show</li>
         </ul>
     </li>
+    <li>11- Permissions 2:
+        <ul>
+            <li>Make The products categories migration</li>
+            <li>Create Products Categories Seeder data and migrate the db</li>
+        </ul>
+    </li>
 </ul>
