@@ -1,5 +1,5 @@
 ###Github Token
-- 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
+- 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
 
 ## Documentation
 
@@ -95,6 +95,16 @@
         <ul>
             <li>Make The products categories migration</li>
             <li>Create Products Categories Seeder data and migrate the db</li>
+        </ul>
+    </li>
+    <li>12- Permission 3:
+        <ul>
+            <li>Create Products Categories Views</li>
+            <li>Add 2 new methods:[appeardChildren, assigned_children] to Permission Model.</li>
+            <li>Install Redis</li>
+            <li>Edit .env File</li>
+            <li>Create ViewServiceProvider and cache Permission Tree inside admin_side_menu and don't forget to make available to all admin views using view composer method.</li>
+            <li>Add the new provider to config/app.php providers array.</li>
         </ul>
     </li>
 </ul>
