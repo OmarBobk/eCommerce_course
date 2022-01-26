@@ -10,7 +10,7 @@ use Mindscms\Entrust\Entrust;
 
 Route::get('/', [FrontendController::class, 'index'])->name('frontend.index');
 Route::get('testing', function () {
-    dd(\App\Models\Permission::tree());
+    dd(Route::currentRouteName());
 });
 Route::get('cart', [FrontendController::class, 'cart'])->name('frontend.cart');
 Route::get('checkout', [FrontendController::class, 'checkout'])->name('frontend.checkout');

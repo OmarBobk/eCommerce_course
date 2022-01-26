@@ -1,5 +1,5 @@
 ###Github Token
-- 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
+- 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
 
 ## Documentation
 
@@ -106,5 +106,14 @@
             <li>Create ViewServiceProvider and cache Permission Tree inside admin_side_menu and don't forget to make available to all admin views using view composer method.</li>
             <li>Add the new provider to config/app.php providers array.</li>
         </ul>
+    </li>
+    <li>13- Permission 4:
+        <ul>
+            <li>Edit config/database.php redis conifg</li>
+            <li>composer require predis/predis</li>
+            <li>Set up the admin sidebar</li>
+            <li>Create app/Helper/GeneralHelper.php file</li>
+            <li>Add the file inside composer.json in autoload in files and don't forget to dump autoload.</li>
+        </ul>    
     </li>
 </ul>
