@@ -3,6 +3,7 @@
 use App\Http\Controllers\Backend\BackendController;
 use App\Http\Controllers\Backend\ProductCategoriesController;
 use App\Http\Controllers\Frontend\FrontendController;
+use App\Models\Permission;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
@@ -10,7 +11,10 @@ use Mindscms\Entrust\Entrust;
 
 Route::get('/', [FrontendController::class, 'index'])->name('frontend.index');
 Route::get('testing', function () {
-    dd(Route::currentRouteName());
+    $x = Permission::tree();
+    foreach ($x as $a) {
+        dd($x, $x[1]->appeardChildren);
+    }
 });
 Route::get('cart', [FrontendController::class, 'cart'])->name('frontend.cart');
 Route::get('checkout', [FrontendController::class, 'checkout'])->name('frontend.checkout');
@@ -55,7 +59,7 @@ Route::group([
         ])
             ->name('index');
 
-        Route::resource('products_categories', ProductCategoriesController::class);
+        Route::resource('product_categories', ProductCategoriesController::class);
 
     });
 });

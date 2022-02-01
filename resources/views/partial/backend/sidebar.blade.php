@@ -17,12 +17,13 @@
     <!-- Divider -->
     <hr class="sidebar-divider my-0">
 
-    @foreach($admin_side_menu as $menu)
-
-        {{--This mean that there is no Childrens--}}
-        @if($menu->appeardChildren()->count() == 0)
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
+    @role(['admin'])
+{{-- $admin_side_menu = Permission::tree()--}}
+@foreach($admin_side_menu as $menu)
+    {{--This mean that there is no Childrens--}}
+    @if($menu->appeardChildren()->count() == 0)
+        <!-- Nav Item - Dashboard -->
+            <li class="nav-item {{$menu->id == getParentShowOf($current_page) ? 'active' : null}}">
                 <a class="nav-link"
                    href="{{route('admin.'.$menu->as)}}">
                     <i class="{{$menu->icon ?? 'fas fa-home'}}"></i>
@@ -32,30 +33,93 @@
 
             <!-- Divider -->
             <hr class="sidebar-divider">
-        @endif
-
-    @endforeach
-
-
-
-
-    <!-- Nav Item - Pages Collapse Menu -->
-    <li class="nav-item">
-
-        <div class="dropdown">
-            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                Dropdown link
+    @else
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item {{in_array($menu->parent_show, [getParentShowOf($current_page), getParentOf($current_page)]) ? 'active' : null}}">
+            <a class="nav-link {{in_array($menu->parent_show, [getParentShowOf($current_page), getParentOf($current_page)]) ? null : 'collapsed'}}"
+               href="#"
+               data-toggle="collapse"
+               data-bs-toggle="collapse"
+               data-bs-target="#collapse_{{$menu->route}}"
+               aria-expanded="{{$menu->parent_show == getParentOf($current_page) && getParentOf($current_page) != '' ? 'fasle' : 'true'}}"
+               aria-controls="collapse_{{$menu->route}}">
+                <i class="{{$menu->icon ?? 'fas fa-home'}}"></i>
+                <span>{{$menu->display_name}}</span>
             </a>
 
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li><a class="dropdown-item" href="#">Something else here</a></li>
-            </ul>
-        </div>
+            @if(isset($menu->appeardChildren) && count($menu->appeardChildren) > 0)
+                <div id="collapse_{{$menu->route}}"
+                     class="collapse {{in_array($menu->parent_show, [getParentShowOf($current_page), getParentOf($current_page)]) ? 'show' : null}}"
+                     aria-labelledby="heading_{{$menu->route}}"
+                     data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        @foreach($menu->appeardChildren as $sub_menu)
+                            <a class="collapse-item {{getParentOf($current_page) != null ?? (int)(getParentIdOf($current_page)+1) == $sub_menu->id ? 'active' : null}}"
+                               href="{{route('admin.'.$sub_menu->as)}}">
+                                {{$sub_menu->display_name}}
+                            </a>
+                        @endforeach
+                    </div>
+                </div>
+            @endif
+        </li>
+    @endif
+@endforeach
+@endrole
 
-    </li>
+    @role(['supervisor'])
+    {{-- $admin_side_menu = Permission::tree()--}}
+    @foreach($admin_side_menu as $menu)
+        @permission($menu->name)
+        {{--This mean that there is no Childrens--}}
+        @if($menu->appeardChildren()->count() == 0)
+        <!-- Nav Item - Dashboard -->
+            <li class="nav-item {{$menu->id == getParentShowOf($current_page) ? 'active' : null}}">
+                <a class="nav-link"
+                   href="{{route('admin.'.$menu->as)}}">
+                    <i class="{{$menu->icon ?? 'fas fa-home'}}"></i>
+                    <span>{{$menu->display_name}}</span>
+                </a>
+            </li>
 
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+        @else
+        <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item {{in_array($menu->parent_show, [getParentShowOf($current_page), getParentOf($current_page)]) ? 'active' : null}}">
+                <a class="nav-link {{in_array($menu->parent_show, [getParentShowOf($current_page), getParentOf($current_page)]) ? null : 'collapsed'}}"
+                   href="#"
+                   data-toggle="collapse"
+                   data-bs-toggle="collapse"
+                   data-bs-target="#collapse_{{$menu->route}}"
+                   aria-expanded="{{$menu->parent_show == getParentOf($current_page) && getParentOf($current_page) != '' ? 'fasle' : 'true'}}"
+                   aria-controls="collapse_{{$menu->route}}">
+                    <i class="{{$menu->icon ?? 'fas fa-home'}}"></i>
+                    <span>{{$menu->display_name}}</span>
+                </a>
+
+                @if(isset($menu->appeardChildren) && count($menu->appeardChildren) > 0 !== null)
+                    <div id="collapse_{{$menu->route}}"
+                         class="collapse {{in_array($menu->parent_show, [getParentShowOf($current_page), getParentOf($current_page)]) ? 'show' : null}}"
+                         aria-labelledby="heading_{{$menu->route}}"
+                         data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            @foreach($menu->appeardChildren as $sub_menu)
+                                @permission($sub_menu->name)
+                                <a class="collapse-item {{getParentOf($current_page) != null ?? (int)(getParentIdOf($current_page)+1) == $sub_menu->id ? 'active' : null}}"
+                                   href="{{route('admin.'.$sub_menu->as)}}">
+                                    {{$sub_menu->display_name}}
+                                </a>
+                                @endpermission
+                            @endforeach
+                        </div>
+                    </div>
+                @endif
+            </li>
+        @endif
+        @endpermission
+    @endforeach
+    @endrole
 
 </ul>
 <!-- End of Sidebar -->

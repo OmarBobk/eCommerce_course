@@ -80,7 +80,7 @@ class EntrustSeeder extends Seeder
                 'ordering'        => '5',
             ]);
         $manageProductCategories->parent_show = $manageProductCategories->id;
-        $manageMain->save();
+        $manageProductCategories->save();
 
         $showProductCategories = Permission::create(
             [

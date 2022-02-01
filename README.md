@@ -114,6 +114,16 @@
             <li>Set up the admin sidebar</li>
             <li>Create app/Helper/GeneralHelper.php file</li>
             <li>Add the file inside composer.json in autoload in files and don't forget to dump autoload.</li>
-        </ul>    
+        </ul>
+    </li>
+    <li>14- Permission 5:
+        <ul>
+            <li>Set up the sidebar Menu.</li>
+            <li>Create new getParentShowOf, getParentOf, getParentIdOf helper funcs.</li>
+            <li>Start using it inside the sidebar.</li>
+            <li>Finishig the Sidebar menu.</li>
+            <li>Fix EntrustSeeder.php</li>
+            <li>Run some test in web.php testing route.</li>
+        </ul>
     </li>
 </ul>
