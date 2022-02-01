@@ -126,4 +126,15 @@
             <li>Run some test in web.php testing route.</li>
         </ul>
     </li>
+    <li>14- Creating Tables:
+        <ul>
+            <li>Create 2 Product and Tag Model, Seeder, Migration</li>
+            <li>Create Migration taggables table.</li>
+            <li>Create Media Model and migration</li>
+            <li>init Product, Tag, Taggable, Media tables.</li>
+            <li>Add parent, children, tree, products:hasMany method to ProductCategory Model.</li>
+            <li>Add category:BelongsTo, tags:MorphToMany, media:MorphMany, method to Product Model.</li>
+            <li>Add products:MorphToMany method to Tag Model.</li>
+        </ul>
+    </li>
 </ul>
