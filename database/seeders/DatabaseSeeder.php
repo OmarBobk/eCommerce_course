@@ -16,6 +16,10 @@ class DatabaseSeeder extends Seeder
         $this->call([
             EntrustSeeder::class,
             ProductCategorySeeder::class,
+            TagSeeder::class,
+            ProductSeeder::class,
+            ProductsImagesSeeder::class,
+            ProductsTagsSeeder::class,
         ]);
     }
 }

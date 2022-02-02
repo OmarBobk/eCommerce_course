@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Backend\BackendController;
 use App\Http\Controllers\Backend\ProductCategoriesController;
+use App\Http\Controllers\Backend\ProductController;
+use App\Http\Controllers\Backend\TagController;
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Models\Permission;
 use Illuminate\Support\Facades\Auth;
@@ -60,6 +62,8 @@ Route::group([
             ->name('index');
 
         Route::resource('product_categories', ProductCategoriesController::class);
+        Route::resource('products', ProductController::class);
+        Route::resource('tags', TagController::class);
 
     });
 });

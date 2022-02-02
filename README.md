@@ -137,4 +137,15 @@
             <li>Add products:MorphToMany method to Tag Model.</li>
         </ul>
     </li>
+    <li>15- Creating Tables:
+        <ul>
+            <li>Create 2 Product and Tag Model, Seeder, Migration</li>
+        </ul>
+    </li>
+    <li>16- Update Permissions:
+        <ul>
+            <li>Create Tags and Products Controllers, Seeders, Views and Resources Routes.</li>
+            <li>Add Tags and Producs to the permissions seeder.</li>
+        </ul>
+    </li>
 </ul>
