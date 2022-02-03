@@ -4,7 +4,7 @@
 ## Documentation
 
 
-<h4>Section 1: Prepareing Files</h4> 
+####Section 1: Prepareing Files 
 - First Of all install UI Package:
   - composer require laravel/ui
   - php artisan ui bootstrap --auth
@@ -13,13 +13,10 @@
 - Create SSL Certificate.
   - sudo mkdir -p ssl // in the root directory
   - make localhost directory inside ssl dir.
-  - sudo nano server_rootCA.csr.cnf
-    - https://gist.github.com/mindscms/c1acc036b738f197592d99286d6d2c5b 
-  - sudo nano v3.ext
-    - https://gist.github.com/mindscms/8df4f780b3289317fc345693a54c6e24
+  - sudo nano [server_rootCA.csr.cnf](https://gist.github.com/mindscms/c1acc036b738f197592d99286d6d2c5b) 
+  - sudo nano [v3.ext](https://gist.github.com/mindscms/8df4f780b3289317fc345693a54c6e24)
 
-  - SSL Commands:
-    - https://gist.github.com/mindscms/528c30e941d28d1b45058f8c0bbf6280
+  - SSL [Commands](https://gist.github.com/mindscms/528c30e941d28d1b45058f8c0bbf6280)
     
   - add this code to the /opt/lampp/etc/extra/httpd-vhosts
     - "<VirtualHost 127.0.1.5:443>
@@ -36,17 +33,22 @@
 
 
 - Download Interface and Dashboard Files.
-  - Interface Template: https://bootstrapious.com/p/boutique-bootstrap-e-commerce-template
+  - Interface Template: [template](https://bootstrapious.com/p/boutique-bootstrap-e-commerce-template)
   - Copy and paste the [css, icons, img, js, vendor] directories from the template into the "/public/frontend/"
   - Copy and paste the [cart, checkout, detail, index, shop] files from the template into the "/resources/views/frontend" and turn the extension of files into blade.php
-  - Dashboard: https://startbootstrap.com/theme/sb-admin-2
+  - [Dashboard](https://startbootstrap.com/theme/sb-admin-2)
   - Refactor The Index page. 
 
 - Apply Interface
   - Create /app/Http/Controllers/Frontend/FrontendController
 
 
-<h4>Section 2: Rules & Authintications</h4>
+
+<br>
+<br>
+<br>
+
+####Section 2: Rules & Authintications
 <ul>
     <li>6- Install Rules Package: 
         <ul>
@@ -126,7 +128,7 @@
             <li>Run some test in web.php testing route.</li>
         </ul>
     </li>
-    <li>14- Creating Tables:
+    <li>15- Creating Tables:
         <ul>
             <li>Create 2 Product and Tag Model, Seeder, Migration</li>
             <li>Create Migration taggables table.</li>
@@ -137,13 +139,9 @@
             <li>Add products:MorphToMany method to Tag Model.</li>
         </ul>
     </li>
-    <li>15- Creating Tables:
-        <ul>
-            <li>Create 2 Product and Tag Model, Seeder, Migration</li>
-        </ul>
-    </li>
     <li>16- Update Permissions:
         <ul>
+            <li>Create 2 Product and Tag Model, Seeder, Migration</li>
             <li>Create Tags and Products Controllers, Seeders, Views and Resources Routes.</li>
             <li>Add Tags and Producs to the permissions seeder.</li>
         </ul>
