@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\ProductCategory;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -17,7 +18,19 @@ class ProductCategoriesController extends Controller
      */
     public function index()
     {
-        return view('backend.products_categories.index');
+        $categories = ProductCategory::withCount('products')
+            ->when(\request()->keyword != null, function ($q) {
+                $q->search(\request()->keyword);
+            })
+            ->when(\request()->status != null, function ($q) {
+                $q->whereStatus(\request()->status);
+            })
+            ->orderBy(\request()->sort_by ?? 'id', \request()->order_by ?? 'desc')
+            ->paginate(\request()->limit_by ?? 10);
+
+        return view('backend.products_categories.index', [
+            'categories' => $categories,
+        ]);
     }
 
     /**

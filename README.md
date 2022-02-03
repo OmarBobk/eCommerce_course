@@ -1,10 +1,10 @@
-###Github Token
+### Github Token
 - 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
 
 ## Documentation
 
 
-####Section 1: Prepareing Files 
+#### Section 1: Prepareing Files 
 - First Of all install UI Package:
   - composer require laravel/ui
   - php artisan ui bootstrap --auth
@@ -48,7 +48,7 @@
 <br>
 <br>
 
-####Section 2: Rules & Authintications
+#### Section 2: Rules & Authintications
 <ul>
     <li>6- Install Rules Package: 
         <ul>
@@ -144,6 +144,20 @@
             <li>Create 2 Product and Tag Model, Seeder, Migration</li>
             <li>Create Tags and Products Controllers, Seeders, Views and Resources Routes.</li>
             <li>Add Tags and Producs to the permissions seeder.</li>
+        </ul>
+    </li>
+</ul>
+<br>
+<br>
+<br>
+
+#### Section 3: Bulding Dashboard.
+<ul>
+    <li>17- Products Sections 1: 
+        <ul>
+            <li>Set up product_categories.index view.</li>
+            <li>Install nicolaslopezj/searchable and Debbugar packages.</li>
+            <li>setup paginate to use bootstrap by adding Illuminate\Pagination\Paginator::useBoostrap(); to boot() method inside AppServiceProvider class.</li>
         </ul>
     </li>
 </ul>
