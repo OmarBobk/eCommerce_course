@@ -43,10 +43,11 @@
   - Create /app/Http/Controllers/Frontend/FrontendController
 
 
+### End of Section 1
+<br>
+<br>
+<br>
 
-<br>
-<br>
-<br>
 
 ####Section 2: Rules & Authintications
 <ul>
@@ -147,3 +148,5 @@
         </ul>
     </li>
 </ul>
+
+#### End of Section 2
