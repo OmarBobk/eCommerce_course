@@ -43,12 +43,14 @@
   - Create /app/Http/Controllers/Frontend/FrontendController
 
 
-
+### End of Section 1
 <br>
 <br>
 <br>
 
 #### Section 2: Rules & Authintications
+
+####Section 2: Rules & Authintications
 <ul>
     <li>6- Install Rules Package: 
         <ul>
@@ -147,6 +149,8 @@
         </ul>
     </li>
 </ul>
+
+#### End of Section 2
 <br>
 <br>
 <br>
