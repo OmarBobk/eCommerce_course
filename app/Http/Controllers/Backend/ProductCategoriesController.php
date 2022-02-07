@@ -3,11 +3,15 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Backend\ProductCategoryRequest;
 use App\Models\ProductCategory;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use Intervention\Image\Facades\Image;
 
 class ProductCategoriesController extends Controller
 {
@@ -40,18 +44,48 @@ class ProductCategoriesController extends Controller
      */
     public function create()
     {
-        return view('backend.products_categories.create');
+        $main_categories = ProductCategory::whereNull('parent_id')
+            ->get(['id', 'name']);
+
+        return view('backend.products_categories.create', [
+            'main_categories' => $main_categories,
+        ]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param ProductCategoryRequest $request
+     * @return RedirectResponse
      */
-    public function store(Request $request)
+    public function store(ProductCategoryRequest $request): RedirectResponse
     {
-        //
+        $data = [
+            'name'       => $request->name,
+            'status'     => $request->status,
+            'parent_id'  => $request->parent_id,
+            'slug'       => Str::slug($request->name),
+        ];
+
+        if ($image = $request->file('cover')) {
+            $file_name = Str::slug($data['name']).".".$image->getClientOriginalExtension();
+            $path = public_path('/assets/product_categories/'.$file_name);
+
+            Image::make($image->getRealPath())->resize(500, null, function ($const) {
+                $const->aspectRatio();
+            })->save($path, 100);
+
+            $data['cover'] = $file_name;
+        }
+
+        ProductCategory::create($data);
+
+        return redirect()->route('admin.product_categories.index')
+            ->with([
+                'msg' => 'Created Successfully',
+                'alert-type' => 'success',
+            ]);
+
     }
 
     /**

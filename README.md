@@ -160,4 +160,19 @@
             <li>setup paginate to use bootstrap by adding Illuminate\Pagination\Paginator::useBoostrap(); to boot() method inside AppServiceProvider class.</li>
         </ul>
     </li>
+    <li>18- Products Sections 2: 
+        <ul>
+            <li>Working on product_categories.create view.</li>
+            <li>Create app/Http/Requests/Backend/ProductCategoryRequest.php
+                <ul>
+                    <li>make the authorize method return true.</li>
+                    <li>Make the switch statement to validate the request on POST, PUT and PATCH</li>
+                    <li>Edit the param in the ProductCategoriesController store method to  ProductCategoryRequest</li>
+                </ul>
+            </li>
+            <li>composer require intervention/image</li>
+            <li>composer require intervention/imagecache and add its provider and alias.</li>
+            <li>Add the flash msg html structure to admin layout.</li>
+        </ul>
+    </li>
 </ul>

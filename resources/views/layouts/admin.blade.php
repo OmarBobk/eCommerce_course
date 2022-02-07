@@ -43,7 +43,11 @@
 
                 @include('partial.backend.navbar')
 
-                @yield('content')
+                <div class="container-fluid">
+                    @include('partial.backend.flash')
+
+                    @yield('content')
+                </div>
 
             </div>
             <!-- End of Main Content -->
