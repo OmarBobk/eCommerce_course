@@ -10,6 +10,7 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use Intervention\Image\Facades\Image;
 
@@ -61,15 +62,15 @@ class ProductCategoriesController extends Controller
     public function store(ProductCategoryRequest $request): RedirectResponse
     {
         $data = [
-            'name'       => $request->name,
-            'status'     => $request->status,
-            'parent_id'  => $request->parent_id,
-            'slug'       => Str::slug($request->name),
+            'name' => $request->name,
+            'status' => $request->status,
+            'parent_id' => $request->parent_id,
+            'slug' => Str::slug($request->name),
         ];
 
         if ($image = $request->file('cover')) {
-            $file_name = Str::slug($data['name']).".".$image->getClientOriginalExtension();
-            $path = public_path('/assets/product_categories/'.$file_name);
+            $file_name = Str::slug($data['name']) . "." . $image->getClientOriginalExtension();
+            $path = public_path('/assets/product_categories/' . $file_name);
 
             Image::make($image->getRealPath())->resize(500, null, function ($const) {
                 $const->aspectRatio();
@@ -91,7 +92,7 @@ class ProductCategoriesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return Application|Factory|View
      */
     public function show($id)
@@ -102,34 +103,96 @@ class ProductCategoriesController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return Application|Factory|View
      */
-    public function edit($id)
+    public function edit(ProductCategory $productCategory)
     {
-        return view('backend.products_categories.edit');
+        $main_categories = ProductCategory::whereNull('parent_id')
+            ->get(['id', 'name']);
+
+        return view('backend.products_categories.edit', [
+            'main_categories' => $main_categories,
+            'productCategory' => $productCategory,
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param ProductCategoryRequest $request
+     * @param ProductCategory $productCategory
+     * @return RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update(
+        ProductCategoryRequest $request,
+        ProductCategory        $productCategory
+    ): RedirectResponse
     {
-        //
+        $data = [
+            'name' => $request->name,
+            'status' => $request->status,
+            'parent_id' => $request->parent_id,
+            'slug' => Str::slug($request->name),
+        ];
+
+        if ($image = $request->file('cover')) {
+
+            if ($productCategory->cover != null &&
+                File::exists('assets/product_categories/' . $productCategory->cover)) {
+                unlink('assets/product_categories/' . $productCategory->cover);
+            }
+
+            $file_name = Str::slug($data['name']) . "." . $image->getClientOriginalExtension();
+            $path = public_path('/assets/product_categories/' . $file_name);
+
+            Image::make($image->getRealPath())->resize(500, null, function ($const) {
+                $const->aspectRatio();
+            })->save($path, 100);
+
+            $data['cover'] = $file_name;
+        }
+
+        $productCategory->update($data);
+
+        return redirect()->route('admin.product_categories.index')
+            ->with([
+                'msg' => 'Updated Successfully',
+                'alert-type' => 'success',
+            ]);
+
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param ProductCategory $productCategory
+     * @return RedirectResponse
      */
-    public function destroy($id)
+    public function destroy(ProductCategory $productCategory): RedirectResponse
     {
-        //
+        if (File::exists('assets/product_categories/' . $productCategory->cover)) {
+            unlink('assets/product_categories/' . $productCategory->cover);
+        }
+
+        $productCategory->delete();
+
+        return redirect()->route('admin.product_categories.index')
+            ->with([
+                'msg' => 'Deleted Successfully',
+                'alert-type' => 'danger',
+            ]);
+    }
+
+    public function remove_image(Request $request)
+    {
+        $category = ProductCategory::findOrFail($request->product_category_id);
+
+        if (File::exists('assets/product_categories/' . $category->cover)) {
+            unlink('assets/product_categories/' . $category->cover);
+            $category->update(['cover' => null]);
+        }
+
+        return true;
     }
 }

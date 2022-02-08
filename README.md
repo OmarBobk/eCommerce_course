@@ -179,4 +179,27 @@
             <li>Add the flash msg html structure to admin layout.</li>
         </ul>
     </li>
+    <li>19- Products Sections 3: 
+        <ul>
+            <li>Use ProductCategoriesController, products_categories Views</li>
+            <li>Edit Category
+                <ul>
+                    <li>set the edit method inside the controller.</li>
+                    <li>create products_categoreis/edit.blade.php view</li>
+                </ul>
+            </li>
+            <li>Update Category
+                <ul>
+                    <li>Use the ProductCategoryRequest and ProductCategory as Params</li>
+                    <li>set the udpate method inside the controller.</li>
+                </ul>
+            </li>
+            <li>Delete Category
+                <ul>
+                    <li>Create the delete form inside index.blade.php .</li>
+                    <li>Set the destroy method in the controller.</li>
+                </ul>
+            </li>
+        </ul>
+    </li>
 </ul>

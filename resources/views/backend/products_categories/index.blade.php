@@ -48,10 +48,18 @@
                                        class="btn btn-primary">
                                         <i class="fa fa-edit"></i>
                                     </a>
-                                    <a href="{{route('admin.product_categories.destroy', $category->id)}}"
+                                    <a href="javascript:void(0);"
+                                       onclick="if(confirm('All Products inside this category will be deleted, Are you sure to delete this Category?')) {document.getElementById('delete-product-category-{{$category->id}}').submit();} else {return false;}"
                                        class="btn btn-danger">
                                         <i class="fa fa-trash"></i>
                                     </a>
+                                    <form action="{{route('admin.product_categories.destroy', $category->id)}}"
+                                          method="POST"
+                                          class="d-none"
+                                          id="delete-product-category-{{$category->id}}">
+                                        @csrf
+                                        @method('DELETE')
+                                    </form>
                                 </div>
                             </td>
                         </tr>
