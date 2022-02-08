@@ -13,10 +13,7 @@ use Mindscms\Entrust\Entrust;
 
 Route::get('/', [FrontendController::class, 'index'])->name('frontend.index');
 Route::get('testing', function () {
-    $x = Permission::tree();
-    foreach ($x as $a) {
-        dd($x, $x[1]->appeardChildren);
-    }
+    dd(auth()->user()->ability('admin', ['manage_product_categories', 'show_product_categories'], ['validate_all' => true]));
 });
 Route::get('cart', [FrontendController::class, 'cart'])->name('frontend.cart');
 Route::get('checkout', [FrontendController::class, 'checkout'])->name('frontend.checkout');

@@ -8,6 +8,8 @@
             <h6 class="m-0 font-weight-bold text-primary" style="line-height:38px;">
                 Product Categories
             </h6>
+
+            @ability('admin', 'delete_product_categories', ['validate_all' => true])
             <div class="ml-auto">
                 <a href="{{route('admin.product_categories.create')}}"
                    class="btn btn-primary">
@@ -17,6 +19,7 @@
                     <span class="text">Add new Category</span>
                 </a>
             </div>
+            @endability
         </div>
 
         @include('backend.products_categories.filter.filter')

@@ -157,14 +157,14 @@
 
 #### Section 3: Bulding Dashboard.
 <ul>
-    <li>17- Products Sections 1: 
+    <li>17- Products Categories 1: 
         <ul>
             <li>Set up product_categories.index view.</li>
             <li>Install nicolaslopezj/searchable and Debbugar packages.</li>
             <li>setup paginate to use bootstrap by adding Illuminate\Pagination\Paginator::useBoostrap(); to boot() method inside AppServiceProvider class.</li>
         </ul>
     </li>
-    <li>18- Products Sections 2: 
+    <li>18- Products Categories 2: 
         <ul>
             <li>Working on product_categories.create view.</li>
             <li>Create app/Http/Requests/Backend/ProductCategoryRequest.php
@@ -179,7 +179,7 @@
             <li>Add the flash msg html structure to admin layout.</li>
         </ul>
     </li>
-    <li>19- Products Sections 3: 
+    <li>19- Products Categories 3: 
         <ul>
             <li>Use ProductCategoriesController, products_categories Views</li>
             <li>Edit Category
@@ -200,6 +200,12 @@
                     <li>Set the destroy method in the controller.</li>
                 </ul>
             </li>
+        </ul>
+    </li>
+    <li>19- Products Categories 4: 
+        <ul>
+            <li>Use ProductCategoriesController, products_categories Views</li>
+            <li>Restrict the controller by permissions and roles, using ability method in the controller</li>
         </ul>
     </li>
 </ul>

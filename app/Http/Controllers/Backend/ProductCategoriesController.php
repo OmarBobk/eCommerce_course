@@ -19,10 +19,22 @@ class ProductCategoriesController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return Application|Factory|View
+     * @return Application|Factory|View|RedirectResponse
      */
     public function index()
     {
+        $not_allowed = auth()->user()
+            ->ability('admin',
+                ['manage_product_categories', 'show_product_categories'],
+                ['validate_all' => false]);
+        if(!$not_allowed) {
+            return redirect()->route('admin.index')
+            ->with([
+                'msg' => 'You Are Not Allowed To Go There',
+                'alert-type' => 'danger',
+            ]);
+        }
+
         $categories = ProductCategory::withCount('products')
             ->when(\request()->keyword != null, function ($q) {
                 $q->search(\request()->keyword);
@@ -41,10 +53,22 @@ class ProductCategoriesController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return Factory|Application|View
+     * @return Application|Factory|View|RedirectResponse
      */
     public function create()
     {
+        $not_allowed = auth()->user()
+            ->ability('admin',
+                ['create_product_categories'],
+                ['validate_all' => false]);
+        if(!$not_allowed) {
+            return redirect()->route('admin.index')
+            ->with([
+                'msg' => 'You Are Not Allowed To Go There',
+                'alert-type' => 'danger',
+            ]);
+        }
+
         $main_categories = ProductCategory::whereNull('parent_id')
             ->get(['id', 'name']);
 
@@ -61,6 +85,18 @@ class ProductCategoriesController extends Controller
      */
     public function store(ProductCategoryRequest $request): RedirectResponse
     {
+        $not_allowed = auth()->user()
+            ->ability('admin',
+                ['create_product_categories'],
+                ['validate_all' => false]);
+        if(!$not_allowed) {
+            return redirect()->route('admin.index')
+            ->with([
+                'msg' => 'You Are Not Allowed To Go There',
+                'alert-type' => 'danger',
+            ]);
+        }
+
         $data = [
             'name' => $request->name,
             'status' => $request->status,
@@ -92,22 +128,46 @@ class ProductCategoriesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param int $id
-     * @return Application|Factory|View
+     * @param ProductCategory $productCategory
+     * @return Application|Factory|View|RedirectResponse
      */
-    public function show($id)
+    public function show(ProductCategory $productCategory)
     {
+        $not_allowed = auth()->user()
+            ->ability('admin',
+                ['display_product_categories'],
+                ['validate_all' => false]);
+        if(!$not_allowed) {
+            return redirect()->route('admin.index')
+            ->with([
+                'msg' => 'You Are Not Allowed To Go There',
+                'alert-type' => 'danger',
+            ]);
+        }
+
         return view('backend.products_categories.show');
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param int $id
-     * @return Application|Factory|View
+     * @param ProductCategory $productCategory
+     * @return Application|Factory|View|RedirectResponse
      */
     public function edit(ProductCategory $productCategory)
     {
+        $not_allowed = auth()->user()
+            ->ability('admin',
+                ['update_product_categories'],
+                ['validate_all' => false]);
+        if(!$not_allowed) {
+            return redirect()->route('admin.index')
+            ->with([
+                'msg' => 'You Are Not Allowed To Go There',
+                'alert-type' => 'danger',
+            ]);
+        }
+
         $main_categories = ProductCategory::whereNull('parent_id')
             ->get(['id', 'name']);
 
@@ -129,6 +189,17 @@ class ProductCategoriesController extends Controller
         ProductCategory        $productCategory
     ): RedirectResponse
     {
+        $not_allowed = auth()->user()
+            ->ability('admin',
+                ['update_product_categories'],
+                ['validate_all' => false]);
+        if(!$not_allowed) {
+            return redirect()->route('admin.index')
+            ->with([
+                'msg' => 'You Are Not Allowed To Go There',
+                'alert-type' => 'danger',
+            ]);
+        }
         $data = [
             'name' => $request->name,
             'status' => $request->status,
@@ -171,6 +242,18 @@ class ProductCategoriesController extends Controller
      */
     public function destroy(ProductCategory $productCategory): RedirectResponse
     {
+        $not_allowed = auth()->user()
+            ->ability('admin',
+                ['delete_product_categories'],
+                ['validate_all' => false]);
+        if(!$not_allowed) {
+            return redirect()->route('admin.index')
+            ->with([
+                'msg' => 'You Are Not Allowed To Go There',
+                'alert-type' => 'danger',
+            ]);
+        }
+
         if (File::exists('assets/product_categories/' . $productCategory->cover)) {
             unlink('assets/product_categories/' . $productCategory->cover);
         }
@@ -186,6 +269,19 @@ class ProductCategoriesController extends Controller
 
     public function remove_image(Request $request)
     {
+
+        $not_allowed = auth()->user()
+            ->ability('admin',
+                ['delete_product_categories'],
+                ['validate_all' => false]);
+        if(!$not_allowed) {
+            return redirect()->route('admin.index')
+            ->with([
+                'msg' => 'You Are Not Allowed To Go There',
+                'alert-type' => 'danger',
+            ]);
+        }
+
         $category = ProductCategory::findOrFail($request->product_category_id);
 
         if (File::exists('assets/product_categories/' . $category->cover)) {
