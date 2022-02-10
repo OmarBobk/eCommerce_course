@@ -25,6 +25,11 @@ class ProductCategory extends Model
         ]
     ];
 
+    public function status(): string
+    {
+        return $this->status ? "Active" : "Inactive";
+    }
+
     public function products(): HasMany
     {
         return $this->hasMany(Product::class);

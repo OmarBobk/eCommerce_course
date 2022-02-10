@@ -9,7 +9,7 @@
                 Product Categories
             </h6>
 
-            @ability('admin', 'delete_product_categories', ['validate_all' => true])
+            @ability('admin', 'create_product_categories', ['validate_all' => true])
             <div class="ml-auto">
                 <a href="{{route('admin.product_categories.create')}}"
                    class="btn btn-primary">
@@ -43,10 +43,10 @@
                             <td>{{$category->name}}</td>
                             <td>{{$category->products_count}}</td>
                             <td>{{$category->parent != null ? $category->parent->name : '-'}}</td>
-                            <td>{{$category->status}}</td>
+                            <td>{{$category->status()}}</td>
                             <td>{{$category->created_at}}</td>
                             <td>
-                                <div class="btn-group">
+                                <div class="btn-group btn-group-sm">
                                     <a href="{{route('admin.product_categories.edit', $category->id)}}"
                                        class="btn btn-primary">
                                         <i class="fa fa-edit"></i>
@@ -56,14 +56,15 @@
                                        class="btn btn-danger">
                                         <i class="fa fa-trash"></i>
                                     </a>
-                                    <form action="{{route('admin.product_categories.destroy', $category->id)}}"
-                                          method="POST"
-                                          class="d-none"
-                                          id="delete-product-category-{{$category->id}}">
-                                        @csrf
-                                        @method('DELETE')
-                                    </form>
+
                                 </div>
+                                <form action="{{route('admin.product_categories.destroy', $category->id)}}"
+                                      method="POST"
+                                      class="d-none"
+                                      id="delete-product-category-{{$category->id}}">
+                                    @csrf
+                                    @method('DELETE')
+                                </form>
                             </td>
                         </tr>
                     @empty
@@ -76,7 +77,7 @@
                 <tr>
                     <td colspan="6">
                         <div class="float-right">
-                            {!! $categories->links() !!}
+                            {!! $categories->appends(request()->all())->links() !!}
                         </div>
                     </td>
                 </tr>
