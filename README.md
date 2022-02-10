@@ -220,4 +220,14 @@
             </li>
         </ul>
     </li>
+    <li>20- Fix Login Issues
+        <ul>
+            <li>Decrease The requests:
+                <ul>
+                    <li>Cache The Allowed Routes instead of request them every time user logged in. Creating Protected roleRoutes, loggedUserAllowedRoutes methods.</li>
+                    <li>Delete all cached informations when user logged out by createing the protected loggedOut inside LoginController.</li>
+                </ul>
+            </li>
+        </ul>
+    </li>
 </ul>
