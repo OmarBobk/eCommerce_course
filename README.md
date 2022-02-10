@@ -208,4 +208,16 @@
             <li>Restrict the controller by permissions and roles, using ability method in the controller</li>
         </ul>
     </li>
+    <li>20- Tags: 
+        <ul>
+            <li>Create status method to write active if it is 1 inside ProductCategory Model and use it inside it's index</li>
+            <li>Start Building Tags Using Tag Model, TagController, tags Views:
+                <ul>
+                    <li>Copy index, create, store, show, edit, update and destroy Methods From ProductCategoryController.</li>
+                    <li>Set the methods as needed.</li>
+                    <li>Create TagRequest.</li>
+                </ul>
+            </li>
+        </ul>
+    </li>
 </ul>
