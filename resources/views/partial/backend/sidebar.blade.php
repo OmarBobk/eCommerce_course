@@ -21,7 +21,7 @@
 {{-- $admin_side_menu = Permission::tree()--}}
 @foreach($admin_side_menu as $menu)
     {{--This mean that there is no Childrens--}}
-    @if($menu->appeardChildren()->count() == 0)
+    @if(count($menu->appeardChildren) == 0)
         <!-- Nav Item - Dashboard -->
             <li class="nav-item {{$menu->id == getParentShowOf($current_page) ? 'active' : null}}">
                 <a class="nav-link"
@@ -72,7 +72,7 @@
     @foreach($admin_side_menu as $menu)
         @permission($menu->name)
         {{--This mean that there is no Childrens--}}
-        @if($menu->appeardChildren()->count() == 0)
+        @if(count($menu->appeardChildren) == 0)
         <!-- Nav Item - Dashboard -->
             <li class="nav-item {{$menu->id == getParentShowOf($current_page) ? 'active' : null}}">
                 <a class="nav-link"
