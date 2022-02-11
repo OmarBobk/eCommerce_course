@@ -230,4 +230,12 @@
             </li>
         </ul>
     </li>
+    <li>21- Products
+        <ul>
+            <li>Create Views</li>
+            <li>Create New ProductsRequest</li>
+            <li>Create new status and feature methods inside the model.</li>
+            <li>Create Resources Methods inside the controller.</li>
+        </ul>
+    </li>
 </ul>
