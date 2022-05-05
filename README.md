@@ -238,4 +238,26 @@
             <li>Create Resources Methods inside the controller.</li>
         </ul>
     </li>
+    <li>21- Coupons Section: 
+        <ul>
+            <li>First Section:
+                <ul>
+                    <li>Create ProductCoupon Model, Migration, Seeder.</li>
+                    <li>Create ProductCoupon Controller & Resources Route.</li>
+                    <li>Set The Migration.</li>
+                    <li>Set The Seeder with fake data.</li>
+                    <li>Set The Permission in the PermissionSeeder.</li>
+                    <li>Set The Controller index method & index & filter view.</li>
+                    <li>Migrate the database.</li>
+                    <li>Add searchable trait and status() method to the model.</li>
+                </ul>
+            </li>
+            <li>Second Section:
+                <ul>
+                    <li>Set The Controller create method & create view.</li>
+                    <li>Create and set the ProductCouponRequest.</li>
+                </ul>
+            </li>
+        </ul>
+    </li>
 </ul>

@@ -343,5 +343,97 @@ class EntrustSeeder extends Seeder
                 'appear'          => '0',
             ]);
 
+        // ProductCoupons
+        $manageProductCoupons = Permission::create(
+            [
+                'name'            => 'manage_product_coupons',
+                'display_name'    => 'Product Coupons',
+                'route'           => 'product_coupons',
+                'module'          => 'product_coupons',
+                'as'              => 'product_coupons.index',
+                'icon'            => 'fas fa-percent',
+                'parent'          => '0',
+                'parent_original' => '0',
+                'sidebar_link'    => '1',
+                'appear'          => '1',
+                'ordering'        => '10',
+            ]);
+        $manageProductCoupons->parent_show = $manageProductCoupons->id;
+        $manageProductCoupons->save();
+
+        $showProductCoupons = Permission::create(
+            [
+                'name'            => 'show_product_coupons',
+                'display_name'    => 'Product Coupons',
+                'route'           => 'product_coupons',
+                'module'          => 'product_coupons',
+                'as'              => 'product_coupons.index',
+                'icon'            => 'fas fa-percent',
+                'parent'          => $manageProductCoupons->id,
+                'parent_original' => $manageProductCoupons->id,
+                'parent_show'     => $manageProductCoupons->id,
+                'sidebar_link'    => '1',
+                'appear'          => '1',
+            ]);
+
+        $createProductCoupons = Permission::create(
+            [
+                'name'            => 'create_product_coupons',
+                'display_name'    => 'Create Coupon',
+                'route'           => 'product_coupons',
+                'module'          => 'product_coupons',
+                'as'              => 'product_coupons.create',
+                'icon'            => null,
+                'parent'          => $manageProductCoupons->id,
+                'parent_original' => $manageProductCoupons->id,
+                'parent_show'     => $manageProductCoupons->id,
+                'sidebar_link'    => '1',
+                'appear'          => '0',
+            ]);
+
+        $displayProductCoupons = Permission::create(
+            [
+                'name'            => 'display_product_coupons',
+                'display_name'    => 'Show Coupon',
+                'route'           => 'product_coupons',
+                'module'          => 'product_coupons',
+                'as'              => 'product_coupons.show',
+                'icon'            => null,
+                'parent'          => $manageProductCoupons->id,
+                'parent_original' => $manageProductCoupons->id,
+                'parent_show'     => $manageProductCoupons->id,
+                'sidebar_link'    => '1',
+                'appear'          => '0',
+            ]);
+
+        $updateProductCoupons = Permission::create(
+            [
+                'name'            => 'update_product_coupons',
+                'display_name'    => 'Update Coupon',
+                'route'           => 'product_coupons',
+                'module'          => 'product_coupons',
+                'as'              => 'product_coupons.edit',
+                'icon'            => null,
+                'parent'          => $manageProductCoupons->id,
+                'parent_original' => $manageProductCoupons->id,
+                'parent_show'     => $manageProductCoupons->id,
+                'sidebar_link'    => '1',
+                'appear'          => '0',
+            ]);
+
+        $deleteProductCoupons = Permission::create(
+            [
+                'name'            => 'delete_product_coupons',
+                'display_name'    => 'Delete Coupon',
+                'route'           => 'product_coupons',
+                'module'          => 'product_coupons',
+                'as'              => 'product_coupons.destroy',
+                'icon'            => null,
+                'parent'          => $manageProductCoupons->id,
+                'parent_original' => $manageProductCoupons->id,
+                'parent_show'     => $manageProductCoupons->id,
+                'sidebar_link'    => '1',
+                'appear'          => '0',
+            ]);
     }
 }
