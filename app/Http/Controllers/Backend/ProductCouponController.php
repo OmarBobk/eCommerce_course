@@ -9,6 +9,7 @@ use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Str;
 
 class ProductCouponController extends Controller
 {
@@ -170,31 +171,8 @@ class ProductCouponController extends Controller
                     'alert-type' => 'danger',
                 ]);
         }
-        $data = [
-            'name' => $request->name,
-            'status' => $request->status,
-            'parent_id' => $request->parent_id,
-            'slug' => Str::slug($request->name),
-        ];
 
-        if ($image = $request->file('cover')) {
-
-            if ($productCoupon->cover != null &&
-                File::exists('assets/product_coupons/' . $productCoupon->cover)) {
-                unlink('assets/product_coupons/' . $productCoupon->cover);
-            }
-
-            $file_name = Str::slug($data['name']) . "." . $image->getClientOriginalExtension();
-            $path = public_path('/assets/product_coupons/' . $file_name);
-
-            Image::make($image->getRealPath())->resize(500, null, function ($const) {
-                $const->aspectRatio();
-            })->save($path, 100);
-
-            $data['cover'] = $file_name;
-        }
-
-        $productCoupon->update($data);
+        $productCoupon->update($request->validated());
 
         return redirect()->route('admin.product_coupons.index')
             ->with([
@@ -222,10 +200,6 @@ class ProductCouponController extends Controller
                     'msg' => 'You Are Not Allowed To Go There',
                     'alert-type' => 'danger',
                 ]);
-        }
-
-        if (File::exists('assets/product_coupons/' . $productCoupon->cover)) {
-            unlink('assets/product_coupons/' . $productCoupon->cover);
         }
 
         $productCoupon->delete();

@@ -31,13 +31,13 @@ class ProductCouponRequest extends FormRequest
                 return [
                     'code'         => 'required|unique:product_coupons',
                     'type'         => 'required',
+                    'status'       => 'required',
                     'value'        => 'required',
                     'use_times'    => 'required|numeric',
                     'start_date'   => 'nullable|date_format:Y-m-d',
                     'expire_date'  => 'required_with:start_date|date_format:Y-m-d',
                     'greater_than' => 'nullable|numeric',
                     'description'  => 'nullable',
-                    'status'       => 'required',
                 ];
             }
 

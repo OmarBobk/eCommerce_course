@@ -238,7 +238,7 @@
             <li>Create Resources Methods inside the controller.</li>
         </ul>
     </li>
-    <li>21- Coupons Section: 
+    <li>22- Coupons Section: 
         <ul>
             <li>First Section:
                 <ul>
@@ -254,7 +254,7 @@
             </li>
             <li>Second Section:
                 <ul>
-                    <li>Set The Controller create method & create view.</li>
+                    <li>Set The Controller create and edit methods with views.</li>
                     <li>Create and set the ProductCouponRequest.</li>
                 </ul>
             </li>

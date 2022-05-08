@@ -92,7 +92,7 @@
                     <div class="col-4">
                         <div class="form-group">
                             <label for="start_date">Start Date</label>
-                            <input type="date" name="start_date" value="{{old('start_date', $productCoupon->start_date->format('Y-m-d'))}}"
+                            <input type="date" name="start_date" value="{{old('start_date', $productCoupon->start_date?->format('Y-m-d'))}}"
                                    min="{{\Carbon\Carbon::now()->format('Y-m-d')}}"
                                    class="form-control">
                             @error('start_date') <span class="text-danger">{{$message}}</span>@enderror
@@ -104,7 +104,7 @@
                         <div class="form-group">
                             <label for="expire_date">Expire Date</label>
                             <input type="date" name="expire_date"
-                                   value="{{old('expire_date', $productCoupon->expire_date->format('Y-m-d'))}}"
+                                   value="{{old('expire_date', $productCoupon->expire_date?->format('Y-m-d'))}}"
                                    min="{{\Carbon\Carbon::now()->addDay()->format('Y-m-d')}}"
                                    class="form-control">
                             @error('expire_date') <span class="text-danger">{{$message}}</span>@enderror

@@ -94,6 +94,24 @@
                     </button>
                 </div>
             </div>
+            <div class="col-1">
+                <div class="form-group">
+                    <form action="{{route('admin.product_coupons.index')}}" method="get">
+
+                        <input type="hidden" name="keyword">
+                        <input type="hidden" name="status">
+                        <input type="hidden" name="sort_by">
+                        <input type="hidden" name="order_by">
+                        <input type="hidden" name="limit_by">
+
+                        <button type="submit"
+                                name="sumbit"
+                                class="btn btn-link">
+                            Reset
+                        </button>
+                    </form>
+                </div>
+            </div>
         </div>
     </form>
 </div>
